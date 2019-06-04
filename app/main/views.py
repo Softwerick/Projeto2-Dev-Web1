@@ -1,10 +1,10 @@
 from flask import flash, redirect, render_template, session, url_for, request
 from flask_login import login_required
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 from app.models import Role, User, Produto
 from app import db
 from . import main
-from .forms import NameForm, ProdutoForm, RegistrationForm
+from .forms import NameForm, ProdutoForm, RegistrationForm, EditProductForm
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -57,8 +57,11 @@ def tabela():
 @main.route('/produto', methods=['GET', 'POST'])
 @login_required
 def add_produto():
+    user_id = current_user.get_id()
     form = ProdutoForm()
     roles = Role.query.all()
+    if current_user.role_id != 1:
+        return redirect(url_for('main.tabela'))
     if form.validate_on_submit():
         new_produto = Produto()
         new_produto.name = form.name.data
@@ -69,4 +72,25 @@ def add_produto():
         db.session.commit()
         flash('Produto cadastrado com sucesso.')
         return redirect(url_for('main.tabela'))
-    return render_template('produto.html', form=form, roles=roles)
+    return render_template('produto.html', form=form, roles=roles, user=user_id)
+
+
+@main.route('/editar_produto/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_product(id):
+    produto = Produto.query.get_or_404(id)
+    form = EditProductForm(produto=produto)
+    if form.validate_on_submit():
+        produto.name = form.name.data
+        produto.preco = form.preco.data
+        produto.peso = form.peso.data
+        produto.estoque = form.estoque.data
+        db.session.add(produto)
+        db.session.commit()
+        flash('Produto editado com sucesso!')
+        return redirect(url_for('main.tabela'))
+    form.name.data = produto.name
+    form.preco.data = produto.preco
+    form.peso.data = produto.peso
+    form.estoque.data = produto.estoque
+    return render_template('editar_produto.html', form=form, produto=produto.name)

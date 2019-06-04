@@ -11,6 +11,11 @@
 					<col width="15%">
 					<col width="15%">
 				</colgroup>
+			{% for message in get_flashed_messages() %}
+				<div class="alert alert-warning">
+					{{ message }}
+				</div>
+        {% endfor %}
 				<thead>
 					<tr>
 						<th colspan="6">Lista de Produtos</th>
@@ -27,7 +32,11 @@
 				{% for produto in produtos %}
 					<tr>
 						<td><img src="../static/img/download.png"></td>
+						{% if current_user.role_id == 1 %}
+						<td class="editar_produto"><a href="/editar_produto/{{ produto.id }}">{{produto.name}}</a></td>
+						{% else %}
 						<td>{{produto.name}}</td>
+						{% endif %}
 						<td>{{produto.preco}}</td>
 						<td>{{produto.peso}}</td>
 						<td>{{produto.estoque}} unidades</td>

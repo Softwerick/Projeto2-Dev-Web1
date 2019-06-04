@@ -50,3 +50,12 @@ h3{
 	margin-top: 1em;
 	text-align: center;
 }
+.editar_produto a{
+    border: none !important;
+}
+
+#submit{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}

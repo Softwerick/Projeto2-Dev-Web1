@@ -28,3 +28,11 @@ class ProdutoForm(FlaskForm):
     peso = IntegerField('Quantidade por embalagem', validators=[DataRequired()])
     estoque = IntegerField('Quantidade em estoque', validators=[DataRequired()])
     submit = SubmitField('Cadastrar')
+
+
+class EditProductForm(FlaskForm):
+    name = StringField('Nome do produto', validators=[DataRequired()])
+    preco = IntegerField('Preço do produto', validators=[DataRequired()])
+    peso = IntegerField('Quantidade por embalagem', validators=[DataRequired()])
+    estoque = IntegerField('Quantidade em estoque', validators=[DataRequired()])
+    submit = SubmitField('Enviar')

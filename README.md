@@ -1,3 +1,4 @@
-# Introdução ao Flask
+# Projeto2-Dev-Web1
 
-Códigos desenvolvidos em sala de aula, como introdução ao Flask
+Admin: Eduardo
+Password: Senha

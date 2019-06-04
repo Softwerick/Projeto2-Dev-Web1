@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pojeto1</title>
+	<link rel="stylesheet" href="../static/bootstrap-4.3.1-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+	<link rel="stylesheet" href="../static/css/tabela.css">
+	<link rel="stylesheet" href="../static/css/cadastro.css">
+</head>
+<html>
+	<header>
+		<div class="row">
+				<div class="col-md-1"><img src="img/m.jpg" class="imagem"></div>
+				<div class="col-md-11">
+					<nav class="navbar navbar-expand-lg navbar-light">
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="navbar-nav">
+								<li class="nav-item">
+									 <a class="nav-link" href="index.html">Home</a>
+								</li>
+								<li class="nav-item active">
+									 <a class="nav-link" href="#">Produtos</a>
+								</li>
+								<li class="nav-item">
+									 <a class="nav-link" href="#">Serviços</a>
+								</li>
+								<li class="nav-item">
+									 <a class="nav-link" href="#">Sobre</a>
+								</li>
+								<li class="nav-item">
+									 <a class="nav-link" href="#">Contato</a>
+								</li>
+								{% if current_user.is_authenticated %}
+								{% if current_user.role_id == 1 %}
+								<li>
+									<a href="{{ url_for('main.add_produto')}}">Adicionar Produtos</a>
+								</li>
+								{% endif %}
+                        			<li>
+                            			<a href="{{ url_for('main.logout') }}">Logout</a>
+                        			</li>
+                                {% else %}
+                                <li>
+                                    <a href="{{url_for('main.login')}}">Login</a>
+                                </li>
+								{% endif %}
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+    </header>
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+    <footer>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<h3>Acesse nossas redes sociais</h3>
+				<div class="icones">
+				<span class="fab fa-facebook"></span>
+				<span class="fab fa-instagram"></span>
+				<span class="fab fa-twitter"></span>
+				<span class="fab fa-linkedin-in iconefinal"></span>
+			</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</footer>
+</html>

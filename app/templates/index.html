@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% import "bootstrap/wtf.html" as wtf %}
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Projeto1</title>
+	<link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="row">
+			<div class="col-md-12">
+				<p class="boasvindas">Venha Comprar</p>
+				<p class="boasvindas">Conosco!</p>
+			</div>
+		</div>
+	</header>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4 principal">
+				<h2 class="mensagem">Faça login para ver nossos produtos!</h2>
+    			{{ wtf.quick_form(form) }}
+				<a href="{{ url_for('main.register') }}" class="btn btn-primary">Criar conta</a>
+			{% for message in get_flashed_messages() %}
+			<div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+<script type="text/javascript" href="bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

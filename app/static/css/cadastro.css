@@ -1,0 +1,28 @@
+h2{
+	margin-top: 40px;
+	font-family: 'Lobster', cursive;
+}
+form p{
+text-align: center;
+margin-top: 5px;
+}
+.principal{
+	background-color: #e3e3e5;
+	margin-top: 32px;
+	border: 2px solid black;
+	border-radius: 2%;
+	height: 500px;
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 32px;
+}
+.botao{
+	margin-top: 50px;
+}
+.col p{
+	margin-top: 20px;
+}
+form > div > input{
+width: 70% !important;
+margin: auto;
+}
